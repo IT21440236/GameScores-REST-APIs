@@ -19,6 +19,7 @@ public class User {
     private String userName;
     private String email;
 
+    //one user can have multiple game scores
     @OneToMany(mappedBy = "user")
     private List<GameScore> gameScores = new ArrayList<>();
 

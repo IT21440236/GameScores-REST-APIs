@@ -18,3 +18,12 @@ public class GameScoreKey implements Serializable {
         private Game game;
 }
 
+
+/*NOTES
+*
+Using the Serializable interface we can pack-up the user and game variables and
+* send it to the GameScore entity.
+
+*
+* */
+

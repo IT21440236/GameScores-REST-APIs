@@ -11,5 +11,4 @@ public class GameDTO {
     private Long id;
     private String name;
     private String description;
-    private int score;
 }

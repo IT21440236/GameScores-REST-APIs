@@ -12,6 +12,7 @@ public interface GameScoreService {
     public GameScoreDTO saveGameScore(GameScoreDTO gameScoreDTO);
 
 
+    //since we are getting the highest scores in each game, we need a list
     List<GameScoreDTO> findHighestScoresForUser(Long userId);
 
 

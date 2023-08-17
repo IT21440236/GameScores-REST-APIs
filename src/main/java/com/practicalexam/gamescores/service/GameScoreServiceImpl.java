@@ -48,22 +48,30 @@ public class GameScoreServiceImpl implements GameScoreService {
 
             gameScoreRepository.save(gameScore);
 
+            //converting a entity to a DTO here
             return modelMapper.map(gameScore, GameScoreDTO.class);
+
+            //return gameScoreRepository.save(modelMapper.map(gameScore, GameScoreDTO.class));
         }
 
         throw new IllegalArgumentException("User or game not found with the provided IDs.");
     }
-
+//In the above method I'm dealing with the GameScoreDTO object rather than the
+// entity itself like in Game and User is becuz, here the GameScoreDTO is
+// lighter in weight than the GameScore entity.
 
 
     @Override
     public List<GameScoreDTO> findHighestScoresForUser(Long userId) {
+        // Retrieve the list of highest scores for the given user from the repository
         List<GameScore> highestScores = gameScoreRepository.findHighestScoresForUser(userId);
 
+        // Map the list of GameScore entities to a list of GameScoreDTO using ModelMapper
         List<GameScoreDTO> highestScoreDTOs = highestScores.stream()
                 .map(gameScore -> modelMapper.map(gameScore, GameScoreDTO.class))
                 .collect(Collectors.toList());
 
+        // Return the list of GameScoreDTO representing the highest scores for the user
         return highestScoreDTOs;
     }
 
@@ -73,10 +81,3 @@ public class GameScoreServiceImpl implements GameScoreService {
 }
 
 
-/*Regarding saveScore method
-
-Initially we pass the userId , and enter the gameId manually
-
-But can be improved to pass both userId and gameId and check the validity of both
-before saving a score.
-* */
