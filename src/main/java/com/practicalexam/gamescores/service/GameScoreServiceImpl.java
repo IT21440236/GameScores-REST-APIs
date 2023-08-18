@@ -71,13 +71,26 @@ public class GameScoreServiceImpl implements GameScoreService {
                 .map(gameScore -> modelMapper.map(gameScore, GameScoreDTO.class))
                 .collect(Collectors.toList());
 
+
+
         // Return the list of GameScoreDTO representing the highest scores for the user
         return highestScoreDTOs;
     }
 
-
-
-
 }
 
+
+/*NOTES
+
+•	One key feature of Streams is their lazy evaluation.
+This means that intermediate operations (like map, filter, etc.) are not executed
+until a terminal operation (like collect) is invoked. This can help optimize performance
+by avoiding unnecessary processing.
+=====================================
+
+we need to use the stream becuz we are not just mapping a single GameScore entity to a
+GameScoreDTO object.
+
+Here we are dealing with a list of GameScore entities
+* */
 

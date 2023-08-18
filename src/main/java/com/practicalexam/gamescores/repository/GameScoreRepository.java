@@ -15,3 +15,24 @@ public interface GameScoreRepository extends JpaRepository<GameScore, Long> {
             "AND gs.score = (SELECT MAX(gs2.score) FROM GameScore gs2 WHERE gs2.game = gs.game AND gs2.user = gs.user)")
     List<GameScore> findHighestScoresForUser(@Param("userId") Long userId);
 }
+
+
+
+
+/*NOTES
+
+SELECT gs
+FROM GameScore gs
+WHERE gs.user.id = :userId
+AND gs.score = (
+	SELECT MAX(gs2.score)
+	FROM GameScore gs2
+	WHERE gs2.game = gs.game AND g2.user = gs.user
+)
+
+#Inner query condition
+WHERE gs2.game = gs.game AND g2.user = gs.user
+
+#game selected from inner query and outer query should be same.
+#Same applies for the user
+* */
