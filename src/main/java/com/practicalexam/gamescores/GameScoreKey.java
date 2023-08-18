@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Embeddable
 @AllArgsConstructor
@@ -16,6 +17,7 @@ import java.io.Serializable;
 public class GameScoreKey implements Serializable {
         private User user;
         private Game game;
+        private LocalDateTime scoreDate;
 }
 
 

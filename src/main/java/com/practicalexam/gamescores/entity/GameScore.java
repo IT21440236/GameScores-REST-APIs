@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +26,11 @@ public class GameScore {
         private Game game;
 
         private int score;
+
+
+        @Id
+        @Column(name = "score_date")
+        private LocalDateTime scoreDate;  // Add a field for timestamp
 
 }
 

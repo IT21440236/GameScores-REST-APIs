@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,21 +42,22 @@ public class GameScoreServiceImpl implements GameScoreService {
             User user = userOptional.get();
             Game game = gameOptional.get();
 
+            // Create a new record
             GameScore gameScore = new GameScore();
             gameScore.setUser(user);
             gameScore.setGame(game);
             gameScore.setScore(gameScoreDTO.getScore());
-
+            // Set the scoreDate to the current timestamp
+            gameScore.setScoreDate(LocalDateTime.now());
             gameScoreRepository.save(gameScore);
 
-            //converting a entity to a DTO here
             return modelMapper.map(gameScore, GameScoreDTO.class);
-
-            //return gameScoreRepository.save(modelMapper.map(gameScore, GameScoreDTO.class));
         }
 
         throw new IllegalArgumentException("User or game not found with the provided IDs.");
     }
+
+
 //In the above method I'm dealing with the GameScoreDTO object rather than the
 // entity itself like in Game and User is becuz, here the GameScoreDTO is
 // lighter in weight than the GameScore entity.
