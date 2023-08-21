@@ -52,6 +52,8 @@ public class GameScoreServiceImpl implements GameScoreService {
             gameScoreRepository.save(gameScore);
 
             return modelMapper.map(gameScore, GameScoreDTO.class);
+
+            //return gameScoreRepository.save(modelMapper.map(gameScore, GameScoreDTO.class));
         }
 
         throw new IllegalArgumentException("User or game not found with the provided IDs.");

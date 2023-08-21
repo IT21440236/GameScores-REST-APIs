@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 public interface GameScoreRepository extends JpaRepository<GameScore, Long> {
-    @Query("SELECT gs FROM GameScore gs " +
+    @Query("SELECT gs FROM GameScore gs, User " +
             "WHERE gs.user.id = :userId " +
             "AND gs.score = (SELECT MAX(gs2.score) FROM GameScore gs2 WHERE gs2.game = gs.game AND gs2.user = gs.user)")
     List<GameScore> findHighestScoresForUser(@Param("userId") Long userId);
